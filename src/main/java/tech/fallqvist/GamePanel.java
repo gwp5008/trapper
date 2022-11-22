@@ -85,6 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 	private final Asset[][] monsters = new Entity[maxMaps][20];
 	private final InteractiveTile[][] interactiveTiles = new InteractiveTile[maxMaps][50];
 	private final List<Asset> projectiles = new ArrayList<>();
+	private final List<Asset> traps = new ArrayList<>();
 	private final List<Asset> particles = new ArrayList<>();
 
 	public GamePanel() {
@@ -173,8 +174,9 @@ public class GamePanel extends JPanel implements Runnable {
 			player.update();
 			updateNPCs();
 			updateMonsters();
-			updateProjectiles();
-			updateParticles();
+			updateAssets(traps);
+			updateAssets(projectiles);
+			updateAssets(particles);
 			updateInteractiveTiles();
 		}
 
@@ -209,30 +211,16 @@ public class GamePanel extends JPanel implements Runnable {
 	private void removeMonster(int index) {
 		monsters[currentMap][index] = null;
 	}
-
-	private void updateProjectiles() {
-		for (int i = 0; i < projectiles.size(); i++) {
-			if (projectiles.get(i) != null) {
-				if (projectiles.get(i).isAlive()) {
-					projectiles.get(i).update();
+	
+	private void updateAssets(List<Asset> assets) {
+		for (int i = 0; i < assets.size(); i++) {
+			if (assets.get(i) != null) {
+				if (assets.get(i).isAlive()) {
+					assets.get(i).update();
 				}
 
-				if (!projectiles.get(i).isAlive()) {
-					projectiles.remove(projectiles.get(i));
-				}
-			}
-		}
-	}
-
-	private void updateParticles() {
-		for (int i = 0; i < particles.size(); i++) {
-			if (particles.get(i) != null) {
-				if (particles.get(i).isAlive()) {
-					particles.get(i).update();
-				}
-
-				if (!particles.get(i).isAlive()) {
-					particles.remove(particles.get(i));
+				if (!assets.get(i).isAlive()) {
+					assets.remove(assets.get(i));
 				}
 			}
 		}

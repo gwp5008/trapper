@@ -1,15 +1,11 @@
 package tech.fallqvist.ui;
 
-import tech.fallqvist.GamePanel;
-import tech.fallqvist.asset.Asset;
-import tech.fallqvist.asset.entity.Entity;
-import tech.fallqvist.asset.object.Object;
-import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Coin_Bronze;
-import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Heart;
-import tech.fallqvist.asset.object.usable.pickuponly.OBJ_ManaCrystal;
-import tech.fallqvist.util.UtilityTool;
-
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,11 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import tech.fallqvist.GamePanel;
+import tech.fallqvist.asset.Asset;
+import tech.fallqvist.asset.entity.Entity;
+import tech.fallqvist.asset.object.Object;
+import tech.fallqvist.asset.object.ability.OBJ_StunTrap;
+import tech.fallqvist.asset.object.ability.active.OBJ_IconFireball;
+import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Coin_Bronze;
+import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Heart;
+import tech.fallqvist.asset.object.usable.pickuponly.OBJ_ManaCrystal;
+import tech.fallqvist.util.UtilityTool;
+
 public class UI {
 
 	private final GamePanel gamePanel;
 	private Graphics2D graphics2D;
-	private final BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
+	private final BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, fireballIcon,
+			stunTrapIcon, coin;
 	private Font maruMonica;
 	private List<String> messages = new ArrayList<>();
 	private List<Integer> messageCounter = new ArrayList<>();
@@ -51,6 +59,12 @@ public class UI {
 		this.crystal_full = manaCrystal.getImage1();
 		this.crystal_blank = manaCrystal.getImage2();
 
+		OBJ_IconFireball fireballIcon = new OBJ_IconFireball(gamePanel);
+		this.fireballIcon = fireballIcon.getImage1();
+
+		OBJ_StunTrap stunTrapIcon = new OBJ_StunTrap(gamePanel);
+		this.stunTrapIcon = stunTrapIcon.getTrapNoDirection();
+
 		Object coin = new OBJ_Coin_Bronze(gamePanel);
 		this.coin = coin.getImage1();
 	}
@@ -76,12 +90,14 @@ public class UI {
 		if (gamePanel.getGameState() == gamePanel.getPlayState()) {
 			drawPlayerLife();
 			drawPlayerMana();
+			drawPlayerSpell();
 			drawMessages();
 		}
 
 		if (gamePanel.getGameState() == gamePanel.getPauseState()) {
 			drawPlayerLife();
 			drawPlayerMana();
+			drawPlayerSpell();
 			drawPauseScreen();
 		}
 
@@ -294,6 +310,13 @@ public class UI {
 			graphics2D.drawImage(crystal_full, x, y, null);
 			x += 35;
 		}
+	}
+
+	private void drawPlayerSpell() {
+		int x = gamePanel.getTileSize() / 2;
+		int y = (int) (gamePanel.getTileSize() * 2.5);
+
+		graphics2D.drawImage(fireballIcon, x, y, null);
 	}
 
 	public void addMessage(String text) {

@@ -7,7 +7,8 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-	private boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, spacePressed, projectileKeyPressed;
+	private boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, spacePressed,
+			activeAbilityKeyPressed, goBackActiveAbility, goForwardActiveAbility;
 	private final GamePanel gamePanel;
 
 	// DEBUG
@@ -171,7 +172,11 @@ public class KeyHandler implements KeyListener {
 		}
 
 		if (code == KeyEvent.VK_F) {
-			projectileKeyPressed = true;
+			activeAbilityKeyPressed = true;
+		}
+
+		if (code == KeyEvent.VK_RIGHT) {
+//			abilityIndex++
 		}
 	}
 
@@ -422,7 +427,7 @@ public class KeyHandler implements KeyListener {
 		}
 
 		if (code == KeyEvent.VK_F) {
-			projectileKeyPressed = false;
+			activeAbilityKeyPressed = false;
 		}
 	}
 
@@ -494,12 +499,28 @@ public class KeyHandler implements KeyListener {
 		return this;
 	}
 
-	public boolean isProjectileKeyPressed() {
-		return projectileKeyPressed;
+	public boolean isActiveAbilityKeyPressed() {
+		return activeAbilityKeyPressed;
 	}
 
-	public KeyHandler setProjectileKeyPressed(boolean projectileKeyPressed) {
-		this.projectileKeyPressed = projectileKeyPressed;
+	public KeyHandler setActiveAbilityKeyPressed(boolean activeAbilityKeyPressed) {
+		this.activeAbilityKeyPressed = activeAbilityKeyPressed;
 		return this;
+	}
+
+	public boolean isGoBackActiveAbility() {
+		return goBackActiveAbility;
+	}
+
+	public void setGoBackActiveAbility(boolean goBackActiveAbility) {
+		this.goBackActiveAbility = goBackActiveAbility;
+	}
+
+	public boolean isGoForwardActiveAbility() {
+		return goForwardActiveAbility;
+	}
+
+	public void setGoForwardActiveAbility(boolean goForwardActiveAbility) {
+		this.goForwardActiveAbility = goForwardActiveAbility;
 	}
 }

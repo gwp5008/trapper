@@ -23,16 +23,16 @@ public class OBJ_Fireball extends Projectile {
 	}
 
 	public void getAnimationImages() {
-		setUp1(setup("/images/ability/fireball_up_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setUp2(setup("/images/ability/fireball_up_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setDown1(setup("/images/ability/fireball_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setDown2(setup("/images/ability/fireball_down_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setLeft1(setup("/images/ability/fireball_left_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setLeft2(setup("/images/ability/fireball_left_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setUp1(setup("/images/ability/spells/fireball_up_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setUp2(setup("/images/ability/spells/fireball_up_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setDown1(setup("/images/ability/spells/fireball_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setDown2(setup("/images/ability/spells/fireball_down_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setLeft1(setup("/images/ability/spells/fireball_left_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setLeft2(setup("/images/ability/spells/fireball_left_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
 		setRight1(
-				setup("/images/ability/fireball_right_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+				setup("/images/ability/spells/fireball_right_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
 		setRight2(
-				setup("/images/ability/fireball_right_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+				setup("/images/ability/spells/fireball_right_2", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
 	}
 
 	@Override

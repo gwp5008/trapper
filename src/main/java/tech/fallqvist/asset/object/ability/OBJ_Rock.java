@@ -23,14 +23,14 @@ public class OBJ_Rock extends Projectile {
 	}
 
 	public void getAnimationImages() {
-		setUp1(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setUp2(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setDown1(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setDown2(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setLeft1(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setLeft2(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setRight1(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
-		setRight2(setup("/images/ability/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setUp1(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setUp2(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setDown1(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setDown2(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setLeft1(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setLeft2(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setRight1(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
+		setRight2(setup("/images/ability/enemy_projectiles/rock_down_1", getGamePanel().getTileSize(), getGamePanel().getTileSize()));
 	}
 
 	@Override

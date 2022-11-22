@@ -47,6 +47,7 @@ public abstract class Entity implements Asset {
 	private int defensePower;
 	private int exp;
 	private int nextLevelExp;
+	private String activeAbility;
 	private double stunResistance;
 
 	// OBJECTS & ABILITIES
@@ -59,6 +60,7 @@ public abstract class Entity implements Asset {
 	private int useCost;
 
 	// ANIMATION
+	private BufferedImage trapNoDirection;
 	private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 	private BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1,
 			attackRight2;
@@ -86,6 +88,7 @@ public abstract class Entity implements Asset {
 	private boolean dying = false;
 	private boolean stunned = false;
 	private int dyingCounter;
+	private int activeTimer;
 
 	public Entity(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
@@ -552,6 +555,14 @@ public abstract class Entity implements Asset {
 		this.right2 = right2;
 		return this;
 	}
+	
+	public BufferedImage getTrapNoDirection() {
+		return trapNoDirection;
+	}
+
+	public void setTrapNoDirection(BufferedImage trapNoDirection) {
+		this.trapNoDirection = trapNoDirection;
+	}
 
 	public BufferedImage getAttackUp1() {
 		return attackUp1;
@@ -976,7 +987,15 @@ public abstract class Entity implements Asset {
 		return maxInventorySize;
 	}
 
-	// NOT USED
+	public String getActiveAbility() {
+		return activeAbility;
+	}
+
+	public void setActiveAbility(String activeAbility) {
+		this.activeAbility = activeAbility;
+	}
+	
+    // NOT USED
 
 	@Override
 	public BufferedImage getImage1() {

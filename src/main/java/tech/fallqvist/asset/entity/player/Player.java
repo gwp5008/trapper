@@ -19,6 +19,8 @@ public class Player extends Entity {
 	private final int screenX;
 	private final int screenY;
 	private int resetTimer;
+	private String[] abilities = {"fireball", "stun trap"};
+	private int abilityIndex = 0;
 
 	public Player(GamePanel gamePanel, KeyHandler keyHandler) {
 		super(gamePanel);
@@ -51,7 +53,7 @@ public class Player extends Entity {
 		setCoins(0);
 		setAttackPower(getAttack());
 		setDefensePower(getDefense());
-
+		setActiveAbility("fireball");
 	}
 
 	public void setItems() {
@@ -324,7 +326,7 @@ public class Player extends Entity {
 	}
 	
 	private void checkTrapCollision() {
-		getGamePanel().getCollisionChecker().checkTile(this);
+		getGamePanel().getCollisionChecker().checkEntity(this, getGamePanel().getInteractiveTiles());
 	}
 
 	private void checkTileCollision() {
@@ -419,9 +421,27 @@ public class Player extends Entity {
 			resetTimer = 0;
 		}
 	}
+	
+	private void selectAbility() {
+		if (getGamePanel().getKeyHandler().isGoBackActiveAbility()) {
+			abilityIndex--;
+			moveAbilityIndex();
+		} else {
+			abilityIndex++;
+			moveAbilityIndex();
+		}
+	}
+	
+	private void moveAbilityIndex() {
+		if (abilityIndex < 0) {
+			abilityIndex = abilities.length - 1;
+		} else if (abilityIndex > abilities.length - 1) {
+			abilityIndex = 0;
+		}
+	}
 
 	private void fireProjectileIfKeyPressed() {
-		if (getGamePanel().getKeyHandler().isProjectileKeyPressed() && !getProjectile().isAlive()
+		if (getGamePanel().getKeyHandler().isActiveAbilityKeyPressed() && !getProjectile().isAlive()
 				&& getProjectileAvailableCounter() == 30 && getProjectile().haveEnoughResource(this)) {
 
 			// Set default coordinates, direction and user
