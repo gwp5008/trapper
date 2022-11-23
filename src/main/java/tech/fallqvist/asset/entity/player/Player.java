@@ -19,7 +19,7 @@ public class Player extends Entity {
 	private final int screenX;
 	private final int screenY;
 	private int resetTimer;
-	private String[] abilities = {"fireball", "stun trap"};
+	private String[] abilities = { "fireball", "stun trap" };
 	private int abilityIndex = 0;
 
 	public Player(GamePanel gamePanel, KeyHandler keyHandler) {
@@ -180,13 +180,16 @@ public class Player extends Entity {
 			resetSpriteToDefault();
 		}
 
-		if (abilities[abilityIndex].equalsIgnoreCase("fireball")) {
+		if (getProjectile() instanceof OBJ_Fireball && abilities[abilityIndex].equalsIgnoreCase("fireball")) {
 			fireProjectileIfKeyPressed();
 		}
-		
+
 		checkIfInvincible();
+
 		updateLifeAndMana();
+
 		checkIfAlive();
+
 	}
 
 	private void attacking() {
@@ -320,14 +323,14 @@ public class Player extends Entity {
 	private void checkCollision() {
 		setCollisionOn(false);
 
-		checkTrapCollision();
+//		checkTrapCollision();
 		checkTileCollision();
 		checkInteractiveTileCollision();
 		checkObjectCollision();
 		checkNPCCollision();
 		checkMonsterCollision();
 	}
-	
+
 	private void checkTrapCollision() {
 		getGamePanel().getCollisionChecker().checkEntity(this, getGamePanel().getInteractiveTiles());
 	}
@@ -566,7 +569,7 @@ public class Player extends Entity {
 	public void setAbilities(String[] abilities) {
 		this.abilities = abilities;
 	}
-	
+
 	public int getAbilityIndex() {
 		return abilityIndex;
 	}
