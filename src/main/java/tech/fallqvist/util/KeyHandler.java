@@ -128,6 +128,7 @@ public class KeyHandler implements KeyListener {
 		checkGameStateKeys(code);
 		checkInteractionKeys(code);
 		checkAdminKeys(code);
+		checkAbilityChangeKeys(code);
 	}
 
 	private void checkMovementKeys(int code) {
@@ -176,7 +177,11 @@ public class KeyHandler implements KeyListener {
 		}
 
 		if (code == KeyEvent.VK_RIGHT) {
-//			abilityIndex++
+			gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() + 1);
+		}
+		
+		if (code == KeyEvent.VK_LEFT) {
+			gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() - 1);
 		}
 	}
 
@@ -191,6 +196,14 @@ public class KeyHandler implements KeyListener {
 			case 0 -> gamePanel.getTileManager().loadMap("/maps/worldV3.txt", 0);
 			case 1 -> gamePanel.getTileManager().loadMap("/maps/interior01.txt", 1);
 			}
+		}
+	}
+	
+	private void checkAbilityChangeKeys(int code) {
+		if (code == KeyEvent.VK_LEFT) {
+			
+		} else if (code == KeyEvent.VK_RIGHT) {
+			
 		}
 	}
 

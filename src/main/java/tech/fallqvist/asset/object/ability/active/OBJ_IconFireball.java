@@ -17,13 +17,13 @@ public class OBJ_IconFireball extends Object {
 		super(gamePanel);
 		this.gamePanel = gamePanel;
 
-		setName("Fireball As Active");
+		setName("Fireball Is Active");
 		setValue(1);
 		setDescription("[" + getName() + "]\nWill display active ability.");
 
 		try {
 			BufferedImage image = ImageIO.read(
-					Objects.requireNonNull(getClass().getResourceAsStream("/images/ability/traps/stun_trap_icon.png")));
+					Objects.requireNonNull(getClass().getResourceAsStream("/images/ability/spells/fireball_right_1.png")));
 			setImage1(UtilityTool.scaleImage(image, gamePanel.getTileSize(), gamePanel.getTileSize()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -35,7 +35,7 @@ public class OBJ_IconFireball extends Object {
 		gamePanel.playSoundEffect(1);
 		gamePanel.getUi().addMessage("Ability = " + getName());
 		
-//		Needs changing to set fireball ability
+//		Needs changing to set ability
 //		gamePanel.getPlayer().setCurrentMana(gamePanel.getPlayer().getCurrentMana() + getValue());
 	}
 }
