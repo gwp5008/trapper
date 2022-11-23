@@ -19,6 +19,7 @@ import tech.fallqvist.asset.entity.Entity;
 import tech.fallqvist.asset.object.Object;
 import tech.fallqvist.asset.object.ability.OBJ_StunTrap;
 import tech.fallqvist.asset.object.ability.active.OBJ_IconFireball;
+import tech.fallqvist.asset.object.ability.active.OBJ_IconStunTrap;
 import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Coin_Bronze;
 import tech.fallqvist.asset.object.usable.pickuponly.OBJ_Heart;
 import tech.fallqvist.asset.object.usable.pickuponly.OBJ_ManaCrystal;
@@ -62,8 +63,8 @@ public class UI {
 		OBJ_IconFireball fireballIcon = new OBJ_IconFireball(gamePanel);
 		this.fireballIcon = fireballIcon.getImage1();
 
-		OBJ_StunTrap stunTrapIcon = new OBJ_StunTrap(gamePanel);
-		this.stunTrapIcon = stunTrapIcon.getTrapNoDirection();
+		OBJ_IconStunTrap stunTrapIcon = new OBJ_IconStunTrap(gamePanel);
+		this.stunTrapIcon = stunTrapIcon.getImage1();
 
 		Object coin = new OBJ_Coin_Bronze(gamePanel);
 		this.coin = coin.getImage1();
@@ -316,7 +317,17 @@ public class UI {
 		int x = gamePanel.getTileSize() / 2;
 		int y = (int) (gamePanel.getTileSize() * 2.5);
 
-		graphics2D.drawImage(fireballIcon, x, y, null);
+		if (gamePanel.getPlayer().getAbilities()[gamePanel.getPlayer().getAbilityIndex()]
+				.equalsIgnoreCase("fireball")) {
+			graphics2D.drawImage(fireballIcon, x, y, null);
+		} else if (gamePanel.getPlayer().getAbilities()[gamePanel.getPlayer().getAbilityIndex()]
+				.equalsIgnoreCase("stun trap")) {
+			graphics2D.drawImage(stunTrapIcon, x, y, null);
+		}
+	}
+
+	private void resetAbilityIndex() {
+
 	}
 
 	public void addMessage(String text) {

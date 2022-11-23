@@ -180,7 +180,10 @@ public class Player extends Entity {
 			resetSpriteToDefault();
 		}
 
-		fireProjectileIfKeyPressed();
+		if (abilities[abilityIndex].equalsIgnoreCase("fireball")) {
+			fireProjectileIfKeyPressed();
+		}
+		
 		checkIfInvincible();
 		updateLifeAndMana();
 		checkIfAlive();
@@ -421,24 +424,6 @@ public class Player extends Entity {
 			resetTimer = 0;
 		}
 	}
-	
-//	private void selectAbility() {
-//		if (getGamePanel().getKeyHandler().isGoBackActiveAbility()) {
-//			abilityIndex--;
-//			moveAbilityIndex();
-//		} else {
-//			abilityIndex++;
-//			moveAbilityIndex();
-//		}
-//	}
-//	
-//	private void moveAbilityIndex() {
-//		if (abilityIndex < 0) {
-//			abilityIndex = abilities.length - 1;
-//		} else if (abilityIndex > abilities.length - 1) {
-//			abilityIndex = 0;
-//		}
-//	}
 
 	private void fireProjectileIfKeyPressed() {
 		if (getGamePanel().getKeyHandler().isActiveAbilityKeyPressed() && !getProjectile().isAlive()

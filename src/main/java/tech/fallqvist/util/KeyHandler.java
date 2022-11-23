@@ -177,14 +177,22 @@ public class KeyHandler implements KeyListener {
 		}
 
 		if (code == KeyEvent.VK_RIGHT) {
-			gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() + 1);
+			 if (gamePanel.getPlayer().getAbilityIndex() + 1 > gamePanel.getPlayer().getAbilities().length - 1) {
+				gamePanel.getPlayer().setAbilityIndex(0);
+			} else {
+				gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() + 1);
+			}
 		}
-		
+
 		if (code == KeyEvent.VK_LEFT) {
-			gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() - 1);
+			if (gamePanel.getPlayer().getAbilityIndex() - 1 < 0) {
+				gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilities().length - 1);
+			} else {
+				gamePanel.getPlayer().setAbilityIndex(gamePanel.getPlayer().getAbilityIndex() - 1);
+			}
 		}
 	}
-
+	
 	private void checkAdminKeys(int code) {
 		// DEBUG
 		if (code == KeyEvent.VK_T) {
@@ -198,12 +206,12 @@ public class KeyHandler implements KeyListener {
 			}
 		}
 	}
-	
+
 	private void checkAbilityChangeKeys(int code) {
 		if (code == KeyEvent.VK_LEFT) {
-			
+
 		} else if (code == KeyEvent.VK_RIGHT) {
-			
+
 		}
 	}
 
