@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import tech.fallqvist.GamePanel;
 import tech.fallqvist.asset.Asset;
 import tech.fallqvist.asset.entity.ability.Projectile;
+import tech.fallqvist.asset.entity.ability.Trap;
 import tech.fallqvist.asset.entity.monster.Monster;
 import tech.fallqvist.asset.entity.particle.Particle;
 import tech.fallqvist.asset.entity.player.Player;
@@ -57,6 +58,7 @@ public abstract class Entity implements Asset {
 	private Weapon currentWeapon;
 	private Shield currentShield;
 	private Projectile projectile;
+	private Trap trap;
 	private int useCost;
 
 	// ANIMATION
@@ -937,6 +939,14 @@ public abstract class Entity implements Asset {
 	public Entity setProjectile(Projectile projectile) {
 		this.projectile = projectile;
 		return this;
+	}
+
+	public Trap getTrap() {
+		return trap;
+	}
+
+	public void setTrap(Trap trap) {
+		this.trap = trap;
 	}
 
 	public int getUseCost() {

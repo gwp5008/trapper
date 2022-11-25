@@ -1,17 +1,24 @@
 package tech.fallqvist.asset.entity.player;
 
+import java.awt.AlphaComposite;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+
 import tech.fallqvist.GamePanel;
 import tech.fallqvist.asset.Asset;
 import tech.fallqvist.asset.entity.Entity;
 import tech.fallqvist.asset.object.ability.OBJ_Fireball;
-import tech.fallqvist.asset.object.equipment.*;
+import tech.fallqvist.asset.object.ability.OBJ_StunTrap;
+import tech.fallqvist.asset.object.equipment.OBJ_Axe;
+import tech.fallqvist.asset.object.equipment.OBJ_Shield_Wood;
+import tech.fallqvist.asset.object.equipment.OBJ_Sword_Normal;
+import tech.fallqvist.asset.object.equipment.Shield;
+import tech.fallqvist.asset.object.equipment.Weapon;
 import tech.fallqvist.asset.object.usable.inventory.OBJ_Key;
 import tech.fallqvist.asset.object.usable.inventory.OBJ_Potion_Red;
 import tech.fallqvist.asset.object.usable.pickuponly.PickUpOnlyObject;
 import tech.fallqvist.util.KeyHandler;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
@@ -61,6 +68,7 @@ public class Player extends Entity {
 		setDefaultWeapon();
 		setCurrentShield(new OBJ_Shield_Wood(getGamePanel()));
 		setProjectile(new OBJ_Fireball(getGamePanel()));
+//		setAbility(new OBJ_Fireball(getGamePanel()));
 		getInventory().add(getCurrentWeapon());
 		getInventory().add(getCurrentShield());
 		getInventory().add(new OBJ_Key(getGamePanel()));
@@ -179,17 +187,18 @@ public class Player extends Entity {
 		} else {
 			resetSpriteToDefault();
 		}
-
+		checkAllAbilities();
+		checkIfInvincible();
+		updateLifeAndMana();
+		checkIfAlive();
+	}
+	
+	private void checkAllAbilities() {
 		if (getProjectile() instanceof OBJ_Fireball && abilities[abilityIndex].equalsIgnoreCase("fireball")) {
 			fireProjectileIfKeyPressed();
+		} else if (getTrap() instanceof OBJ_StunTrap && abilities[abilityIndex].equalsIgnoreCase("stun trap")) {
+			
 		}
-
-		checkIfInvincible();
-
-		updateLifeAndMana();
-
-		checkIfAlive();
-
 	}
 
 	private void attacking() {
@@ -431,8 +440,6 @@ public class Player extends Entity {
 	private void fireProjectileIfKeyPressed() {
 		if (getGamePanel().getKeyHandler().isActiveAbilityKeyPressed() && !getProjectile().isAlive()
 				&& getProjectileAvailableCounter() == 30 && getProjectile().haveEnoughResource(this)) {
-
-			// Set default coordinates, direction and user
 			getProjectile().set(getWorldX(), getWorldY(), getDirection(), true, this);
 
 			// Subtract use cost
